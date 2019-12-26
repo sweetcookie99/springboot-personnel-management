@@ -1,0 +1,272 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="assert/css/xadmin.css"/>
+    <link rel="shortcut icon" href="assert/logo.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="assert/css/font.css"/>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assert/layui/layui.js"></script>
+    <script src="assert/js/xadmin.js"></script>
+</head>
+<body>
+    <!-- 顶部开始 -->
+    <div class="container">
+        <div class="logo"><a href="./index.html">人事管理系统</a></div>
+        <div class="left_open">
+            <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+        </div>
+        
+        <ul class="layui-nav right" lay-filter="">
+          <li class="layui-nav-item">
+            <a href="javascript:;" th:text="${session.loginUser}"></a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+              <dd><a onclick="x_admin_show('个人信息','/user/myupdate')">个人信息</a></dd>
+              <dd><a onclick="x_admin_show('切换帐号','/')">切换帐号</a></dd>
+              <dd><a href="/">退出</a></dd>
+            </dl>
+          </li>
+          <li class="layui-nav-item to-index"><a>欢迎登录</a></li>
+        </ul>
+        
+    </div>
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+     <!-- 左侧菜单开始 -->
+    <div class="left-nav">
+      <div id="side-nav">
+        <ul id="nav">
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>用户管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:_href="@{/users}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户列表</cite>
+                            
+                        </a>
+                    </li >
+                    <li>
+                        <a th:_href="@{/user}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加用户</cite>
+                            
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>部门管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:_href="@{/depts}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>部门列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="../page/dept/add.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加部门</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe723;</i>
+                    <cite>职位管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:_href="@{/jobs}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>职位列表</cite>
+                        </a>
+                    </li >
+                     <li>
+                        <a _href="../page/job/add.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加职位</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+           
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe726;</i>
+                    <cite>员工管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:_href="@{/employees}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>员工列表</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="../page/employee/add.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加员工</cite>
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6ce;</i>
+                    <cite>公告管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a th:_href="@{/notices}">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>公告查询</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="../page/notice/add.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加公告</cite>
+                        </a>
+                    </li >
+                   
+                   
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b4;</i>
+                    <cite>下载中心</cite>
+                    <i class="iconfont nav_right">&#xe697;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="../page/document/list.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>文档查询</cite>
+                        </a>
+                    </li>
+                    <li>
+                        <a _href="../page/document/add.html">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>上传文档</cite>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+          <ul class="layui-tab-title">
+            <li class="home"><i class="layui-icon"></i>我的桌面</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                    <legend>Spring Boot 的优势</legend>
+                </fieldset>
+                <div class="layui-collapse" lay-filter="test">
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">Spring是什么？</h2>
+                        <div class="layui-colla-content">
+                            <p>Spring是一个开源框架，Spring是于2003 年兴起的一个轻量级的Java 开发框架，由Rod Johnson 在其著作《Expert One-On-One J2EE Development and Design》。Spring是为了解决企业级应用开发的复杂性而创建的，使用Spring可以让简单的JavaBean实现之前只有EJB才能完成的事情。但是Spring不仅仅局限于服务器端开发，任何Java应用都能在简单性、可测试性和松耦合性等方面从Spring中获益。
+                                </p>
+                            <p>为了降低Java开发的复杂性，Spring采用了以下4种关键策略：
+
+                                1、基于POJO的轻量级和最小侵入性编程；
+
+                                2、通过依赖注入（DI）和面向接口实现松耦合；
+
+                                3、基于切面（AOP）和惯例进行声明式编程；
+
+                                4、通过切面和模版减少样式代码；</p>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">SpringBoot是什么？</h2>
+                        <div class="layui-colla-content">
+
+                            <p>Spring Boot 是所有基于 Spring 开发的项目的起点。Spring Boot 的设计是为了让你尽可能快的跑起来 Spring 应用程序并且尽可能减少你的配置文件。简单来说就是SpringBoot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架（</p>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title">SpringBoot的优点和特点</h2>
+                        <div class="layui-colla-content">
+<p>优点：<br><br>
+
+             1：使编码变得简单，SpringBoot采用 JavaConfig的方式，对Spring进行配置，并且提供了大量的注解，极大的提高了工作效率。
+<br>
+             2：使配置变得简单,SpringBoot提供许多默认配置，当然也提供自定义配置，但是所有的SpringBoot的项目都只有一个配置文件：application.properties/application.yml。用了SpringBoot可以不用担心配置出错找不到问题所在.
+<br>
+    3：使部署变得简单，SpringBoot内置了三种Servlet容器，Tomcat，Jetty,undertow.我们只需要一个Java的运行环境就可以跑SpringBoot的项目了，SpringBoot的项目可以打成一个jar包，然后通过Java  -jar xxx.jar来运行（SpringBoot项目的入口是一个main方法，运行该方法即可）。
+<br>
+             4：使监控变得简单，SpringBoot提供了actuator包，可以使用它来对应用进行监控。
+
+    <br><br>
+    特点：
+    <br>
+
+             1：创立独立的Spring应用程序
+    <br>
+             2：嵌入的Tomcat，无需部署war文件
+    <br>
+             3：简化Maven配置
+    <br>
+             4：自动配置Spring
+    <br>
+             5：提供生产就绪功能，如指标，健康检查和外部配置
+    <br>
+             6：绝对没有代码生成和对XML没有配置要求
+
+                                <br><br>
+</p>
+                        </div>
+                    </div>
+                    <div class="layui-colla-item">
+                        <h2 class="layui-colla-title"></h2>
+                        <div class="layui-colla-content">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <!-- 右侧主体结束 -->
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <div class="footer">
+        <div class="copyright">Copyright ©2019 LiTao</div>
+    </div>
+    <!-- 底部结束 -->
+ 
+</body>
+</html>
